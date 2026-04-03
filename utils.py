@@ -5,6 +5,7 @@ import time
 
 from config import SLEEP_MIN, SLEEP_MAX
 
+
 def human_sleep(a=SLEEP_MIN, b=SLEEP_MAX):
     time.sleep(random.uniform(a, b))
 
@@ -42,4 +43,3 @@ def walk_json(obj):
 def extract_product_id_from_link(link):
     match = re.search(r"/catalog/(\d+)/", link)
     return match.group(1) if match else ""
-

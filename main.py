@@ -1,17 +1,17 @@
-import pandas as pd
 from urllib.parse import quote
 
+import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 from config import QUERY, MAX_PRODUCTS, PRICE, RAITING
-from utils import human_sleep, clear_performance_logs
 from parser import (
     scroll_page,
     parse_list,
     parse_card,
 )
+from utils import human_sleep, clear_performance_logs
 
 
 def start_driver():
@@ -40,6 +40,7 @@ def start_driver():
     )
     driver.set_page_load_timeout(40)
     return driver
+
 
 def main():
     driver = start_driver()
@@ -72,8 +73,6 @@ def main():
     driver.quit()
 
     df = pd.DataFrame(full_data)
-
-
 
     df["Цена"] = (
         df["Цена"]
@@ -136,7 +135,7 @@ def main():
         (df["Рейтинг"] >= RAITING) &
         (df["Цена"] <= PRICE) &
         (df["Страна"] == "россия")
-    ]
+        ]
 
     filtered.to_excel("выборка.xlsx", index=False)
 

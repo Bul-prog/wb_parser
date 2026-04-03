@@ -89,11 +89,11 @@ def find_product_json_in_network(driver, product_id):
             mime_lower = mime.lower()
 
             if (
-                "json" in mime_lower
-                or "card.wb.ru" in url_lower
-                or "basket" in url_lower
-                or "detail" in url_lower
-                or "catalog" in url_lower
+                    "json" in mime_lower
+                    or "card.wb.ru" in url_lower
+                    or "basket" in url_lower
+                    or "detail" in url_lower
+                    or "catalog" in url_lower
             ):
                 candidates.append(request_id)
         except Exception:
@@ -110,16 +110,16 @@ def find_product_json_in_network(driver, product_id):
 
             for node in walk_json(data):
                 node_id = (
-                    node.get("id")
-                    or node.get("nm_id")
-                    or node.get("nmId")
-                    or node.get("imt_id")
+                        node.get("id")
+                        or node.get("nm_id")
+                        or node.get("nmId")
+                        or node.get("imt_id")
                 )
 
                 if str(node_id) == str(product_id):
                     if any(
-                        key in node
-                        for key in ("sizes", "supplier", "supplierId", "options", "feedbacks", "pics", "name")
+                            key in node
+                            for key in ("sizes", "supplier", "supplierId", "options", "feedbacks", "pics", "name")
                     ):
                         return node
         except Exception:
